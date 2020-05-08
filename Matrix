@@ -1,0 +1,234 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "ru");
+	int line, column;
+
+	cout << "Введiть кiлькiсть рядкiв: " << endl;
+	cin >> line;
+
+	cout << "Введiть кiлькiсть стовбцiв: " << endl;
+	cin >> column;
+
+	int** matrix = new int* [line];
+	for (int i = 0; i < line; i++)
+	{
+		matrix[i] = new int[column];
+	}
+	
+	for (int i = 0; i < line; i++)
+	{
+		for (int j = 0; j < column; j++)
+		{
+			matrix[i][j] = rand() % 20;       //Користувач вводить свої числа в матрицю
+		}
+	}
+	for (int i = 0; i < line; i++)
+	{
+		cout << "\t";
+
+		for (int j = 0; j < column; j++)
+		{
+			cout << matrix[i][j] << "  ";
+		}
+		cout << endl;
+	}
+	int a;
+	cout << "Виберiть дiю: " << endl;
+	cout << "1 - Сумма n рядка " <<
+		endl << "2 - Сумма n стовбця " <<
+		endl << "3 - Мiнiмум n рядка " <<
+		endl << "4 - Максимум n рядка " <<
+		endl << "5 - Мiнiмум n стовбця " <<
+		endl << "6 - Максимум n стовбця " <<
+		endl << "7 - Найти сумму елементiв головної дiагоналi " <<
+		endl << "8 - Транспоннування матрицi " << endl;
+	for (int n = 0; n < 1;)
+	{
+		cin >> a;
+		switch (a)
+		{
+		case 1:
+		{
+			int sum = 0;
+			for (int i = 0; i < line; i++)
+			{
+				cout << "Сума " << i + 1 << " рядка ";
+				for (int j = 0; j < column; j++)
+				{
+					sum += matrix[i][j];
+				}
+				cout << sum << endl;
+				sum = 0;
+			}
+			break;
+		}
+		case 2:
+		{
+			int sum = 0;
+			for (int i = 0; i < column; i++)
+			{
+				cout << "Сума " << i + 1 << " стовбця ";
+				for (int j = 0; j < line; j++)
+				{
+					sum += matrix[j][i];
+				}
+				cout << sum << endl;
+				sum = 0;
+			}
+			break;
+		}
+		case 3:
+		{
+			int min = 0;
+			for (int i = 0; i < line; i++)
+			{
+				min = matrix[i][0];
+				cout << "Мiнiмум " << i + 1 << " рядка ";
+
+				for (int j = 0; j < column; j++)
+				{
+					if (matrix[i][j] < min)
+					{
+						min = matrix[i][j];
+					}
+				}	
+				cout << min << endl;
+				min = 0;
+			}
+			break;
+		}
+		case 4:
+		{
+			int max = 0;
+			for (int i = 0; i < line; i++)
+			{
+				max = matrix[0][i];
+				cout << "Максимум " << i + 1 << " рядка ";
+				for (int j = 0; j < column; j++)
+				{
+					if (matrix[i][j] > max)
+					{
+						max = matrix[i][j];
+					}
+				}
+				cout << max << endl;
+				max = 0;
+			}
+			break;
+		}
+		case 5:
+		{
+			int min = 0;
+			for (int i = 0; i < column; i++)
+			{
+				min = matrix[i][0];
+				cout << "Мiнiмум " << i + 1 << " стовбця ";
+
+				for (int j = 0; j < line; j++)
+				{
+					if (matrix[j][i] < min)
+					{
+						min = matrix[j][i];
+					}
+				}
+				cout << min << endl;
+				min = 0;
+			}
+			break;
+		}
+		case 6:
+		{
+			int max = 0;
+			for (int i = 0; i < column; i++)
+			{
+				cout << "Максимум " << i + 1 << " стовбця ";
+				for (int j = 0; j < line; j++)
+				{
+					if (matrix[j][i] > max)
+					{
+						max = matrix[j][i];
+					}
+				}
+				cout << max << endl;
+				max = 0;
+			}
+			break;
+		}
+		case 7:
+		{
+			int sum = 0;
+			if (line == column)
+			{
+				for (int i = 0; i < line; i++)
+				{
+					sum += matrix[i][i];
+				}
+				cout << "Сумма главной деагонали равна " << sum << endl;
+			}
+			else if (line > column)
+			{
+				for (int i = 0; i < column; i++)
+				{
+					sum += matrix[i][i];
+				}
+				cout << "Сумма елементiв головної дiагоналi " << sum << endl;
+			}
+			else
+			{
+				for (int i = 0; i < line; i++)
+				{
+					sum += matrix[i][i];
+				}
+				cout << "Сумма елементiв головної дiагоналi " << sum << endl;
+			}
+
+			break;
+		}
+		case 8:
+		{
+			int a;
+			if (line == column)
+			{
+				for (int i = 0; i < line; i++)
+				{
+					for (int j = 0; j < i; j++)
+					{
+						a = matrix[i][j];
+						matrix[i][j] = matrix[j][i];
+						matrix[j][i] = a;
+					}
+				}
+				for (int i = 0; i < line; i++)
+				{
+					cout << "\t";
+
+					for (int j = 0; j < column; j++)
+					{
+						cout << matrix[i][j] << " ";
+					}
+					cout << endl;
+				}
+			}
+			else
+			{
+				cout << "Вибачте, але щось пiшло не так!!! " << endl;
+			}
+
+			break;
+		}
+
+		default:
+			cout << "Значення введено неправильне!!!" << endl;
+			break;
+		}
+	}
+	for (int i = 0; i < line; i++)
+	{
+		delete  matrix[i];
+	}
+	delete[] matrix;
+}
