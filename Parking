@@ -1,0 +1,164 @@
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+	setlocale(LC_ALL, "ru");
+
+	const int FLOORS = 7;              //Кількість поверхів на парковці
+	const int PARKINGS = 10;          //Кількість парковочних місць на 1 поверх
+
+	int floorsAndparkings[FLOORS][PARKINGS];
+
+	cout << "Таблиця мiсць на парковцi (0 - мiсця занятi)" << endl;
+
+	for (int i = 0; i < FLOORS; i++)
+	{
+		cout << i + 1 << " -й етаж   ";
+
+		for (int j = 0; j < PARKINGS; j++)
+		{
+			floorsAndparkings[i][j] = j + 1;
+			cout << floorsAndparkings[i][j] << " | ";                                 //Вивід паркінгу на екран
+		}
+		cout << endl << "-------------------------------------------------" << endl;
+	}
+
+	int floor = 1;
+	int parkingPlase = 1;
+
+	char exit = '1';             //Дія 1 заброн. 2 зняти бронь
+	int a;
+
+	do
+	{
+		cout << "\nЗаброннювати мiсце нажмiть - 1";
+		cout << "\nЗняти бронювання нажмiть - 2" << endl;
+		cin >> exit;
+		cout << "\nЩоб забронювати паркiнг, виберiть поверх i номер мiсця " << endl;
+		if (exit == '1')
+		{
+
+			do
+			{
+				if (floor < 1 || floor > FLOORS)
+				{
+					cout << "Такого поверха немає!!" << endl;                //Перевірка на наявність поверху
+				}
+				cout << "Введiть номер поверха:";
+				cin >> floor;
+
+
+
+			} while (floor < 1 || floor > FLOORS);
+
+			do
+			{
+				if (parkingPlase < 1 || parkingPlase > PARKINGS)
+				{
+					cout << "Такого номера немає виберiть другий!!" << endl;       //Перевірка на наявність місць
+				}
+				cout << "Введiть номер мiсця для парковки: ";
+				cin >> parkingPlase;
+
+			} while (parkingPlase < 1 || parkingPlase > PARKINGS);
+
+			if (floorsAndparkings[floor - 1][parkingPlase - 1] == 0)
+			{
+				cout << "Мiсце заброньовано\n Виберь друге!!\n";
+				cout << "Таблица мiсць парковки (0 - мiсця занятi)" << endl;                    //Перевірка чи не заброньоване місце
+
+				for (int i = 0; i < FLOORS; i++)
+				{
+					cout << i + 1 << " -й етаж   ";
+
+					for (int j = 0; j < PARKINGS; j++)
+					{
+						cout << floorsAndparkings[i][j] << " | ";
+					}
+					cout << endl << "-------------------------------------------------" << endl;
+				}
+			}
+			else
+			{
+				floorsAndparkings[floor - 1][parkingPlase - 1] = 0;
+				cout << "\n\nБронювання успiшно!!" << endl;
+				cout << "Ваше мiсце парковки: " << floor << " -й етаж " << parkingPlase << " -й мiсце\n";
+				cout << "Таблица мiсць парковки (0 - мiсця занятi)" << endl;
+
+				for (int i = 0; i < FLOORS; i++)
+				{
+					cout << i + 1 << " -й етаж   ";
+
+					for (int j = 0; j < PARKINGS; j++)
+					{
+						cout << floorsAndparkings[i][j] << " | ";
+					}
+					cout << endl << "-------------------------------------------------" << endl;
+				}
+				cout << "Щоб продовжити - нажмiть 1. Вийти 0:\n";
+				cin >> exit;
+			}
+		}
+		else
+		{
+			do
+			{
+				if (floor < 1 || floor > FLOORS)
+				{
+					cout << "Такого поверха немає!!" << endl;           //Поверха немає
+				}
+				cout << "Введите номер поверха:";
+				cin >> floor;
+			} while (floor < 1 || floor > FLOORS);
+
+			do
+			{
+				if (parkingPlase < 1 || parkingPlase > PARKINGS)
+				{
+					cout << "Такого номера немає виберiть другий!!" << endl;               //Номера немає
+				}
+				cout << "Введiть номер мiсця для парковки ";
+				cin >> parkingPlase;
+
+			} while (parkingPlase < 1 || parkingPlase > PARKINGS);
+
+			if (floorsAndparkings[floor - 1][parkingPlase - 1] == 0)
+			{
+				floorsAndparkings[floor - 1][parkingPlase - 1] = parkingPlase;
+				cout << "Бронювання знято\n";
+				cout << "Таблица мiсць парковки (0 - мiсця занятi)" << endl;
+
+				for (int i = 0; i < FLOORS; i++)
+				{
+					cout << i + 1 << " -й етаж   ";
+
+					for (int j = 0; j < PARKINGS; j++)
+					{
+						cout << floorsAndparkings[i][j] << " | ";
+					}
+					cout << endl << "-------------------------------------------------" << endl;
+				}
+
+			}
+			else
+			{
+				cout << "Мiсце не заброньоване\n Виберiть друге!!\n";
+				cout << "Таблица мiсць парковки (0 - мiсця занятi)" << endl;
+
+				for (int i = 0; i < FLOORS; i++)
+				{
+					cout << i + 1 << " -й етаж   ";
+
+					for (int j = 0; j < PARKINGS; j++)
+					{
+						cout << floorsAndparkings[i][j] << " | ";
+					}
+					cout << endl << "-------------------------------------------------" << endl;
+				}
+			}
+		}
+	} while (exit != '0');         //Якщо = 0 то вихід
+	return 0;
+}
