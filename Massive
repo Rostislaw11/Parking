@@ -1,0 +1,94 @@
+#include <iostream>
+#include <cstdlib>
+#include <time.h>
+#include <algorithm>
+
+using namespace std;
+
+int isPermutation(int* matrix_1, int* matrix_2, int size)
+{
+	sort(matrix_1, matrix_1 + size);            //Сортирую числа масива 1
+	sort(matrix_2, matrix_2 + size);            //Сортирую числа масива 2
+
+	for (int k = 0; k < size; k++)
+	{
+	
+		for (int i = 0; i < size; i++)
+		{
+			if (matrix_1[k] == matrix_2[i])     //Если k елемент матрицы 1 равно і матрицы 2 то выводим
+			{
+				cout << matrix_2[i] << "\t";
+				exit;
+			}
+		}
+	}
+	return true;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "ukr");
+	const int size = 10;               //Максимальное количество елем. в масиве
+	int*  matrix_1  = new int[size];
+
+	srand(time(NULL));
+	cout << "Перший масив: "<< endl;            //Первый масив
+	
+	bool alreadyThere;               //Переменная для проверки есть или нет число в масиве
+	
+
+	for (int i = 0; i < size; )              //Цыкл для создания уникальных переменных
+	{
+		alreadyThere = false;
+		int newRandomValue = rand() % 20;    //Переменная для рандомных чисел
+		for (int j = 0; j < i; j++)
+		{
+			if (matrix_1[j]==newRandomValue)
+			{
+				alreadyThere = true;
+			}
+		}
+		if (alreadyThere!=true)         //Если переменной нету в масиве заходим сюда
+		{
+			matrix_1[i] = newRandomValue;
+			i++;
+		}
+	}
+
+	for (int i = 0; i < size; i++)        // виведення масива 1
+	{
+		cout <<  matrix_1[i] << "\t";
+	}
+	int* matrix_2 = new int[size];            //Другий масив
+
+	cout << "\nДругий масив: " << endl;
+	
+	for (int i = 0; i < size; )              //Цыкл для создания уникальных переменных
+	{
+		alreadyThere = false;
+		int newRandomValue = rand() % 20;    //Переменная для рандомных чисел
+		for (int j = 0; j < i; j++)
+		{
+			if (matrix_2[j] == newRandomValue)
+			{
+				alreadyThere = true;
+			}
+		}
+		if (alreadyThere != true)         //Если переменной нету в масиве заходим сюда
+		{
+			matrix_2[i] = newRandomValue;
+			i++;
+		}
+	}
+	
+	for (int i = 0; i < size; i++)            // виведення масива 2
+	{
+		cout << matrix_2[i] << "\t";
+	}
+	cout << "\nСпiльнi числа двох масивiв (без повторiв): "<<endl;
+
+	isPermutation(matrix_1, matrix_2, size);        //Функція для підрахунку спільних елементів
+	
+	delete[] matrix_1;      //Очищаем память
+	delete[] matrix_2;         //Очищаем память
+}
