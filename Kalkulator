@@ -1,0 +1,84 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "ukr");
+	float a, b = 0;
+	int с = 0;
+	start:
+	cout << "Оберiть операцiю: \n\n0 - Вихiд \n1 - Сума\t\t6 - Степiнь.\n2 - Рiзниця.\t\t7 - Експонента.\n3 - Множення.\t\t8 - Синус.\n4 - Дiлення.\t\t9 - Косинус.\n5 - Квадратний корiнь\n ";
+	cin >> с;
+	switch (с)
+	{
+	case 0:
+		return 0;
+		break;
+	case 1:                                               //Сума
+		cout << "Перший доданок: ";
+		cin >> a;
+		cout << "Другий доданок: ";
+		cin >> b;
+		cout << "a + b = " << a + b << endl;
+		break;
+	case 2:                                                 //Різниця
+		cout << "Перше число: ";
+		cin >> a;
+		cout << "Друге число: ";
+		cin >> b;
+		cout << "a - b = " << a - b << endl;
+		break;
+	case 3:                                               //Множення
+		cout << "Перший множник: ";
+		cin >> a;
+		cout << "Другий множник: ";
+		cin >> b;
+		cout << "a * b = " << a * b << endl;
+		break;
+	case 4:                                            //Ділення
+		cout << "Дiлене: ";
+		cin >> a;
+		cout << "Дiльник: ";
+		cin >> b;
+		cout << "a / b = " << a / b << endl;
+		break;
+	case 5:                                           //Квадратний корінь
+		cin >> a;
+		cout << "Квадратний корiнь" << a << " = " << sqrt(a) << endl;
+		break;
+	case 6:                                                    //Степінь
+		cout << "Число: ";
+		cin >> a;
+		cout << "Степiнь: ";
+		cin >> b;
+		cout << a << "^" << b << " = " << pow(a, b) << endl;
+		break;
+	case 7:                                                  //Експонента
+		cin >> a;
+		cout << "e^" << a << " = " << exp(a) << endl;
+		break; 
+	case 8:                                               //Синус
+		cout << "Кут: ";
+		cin >> a;
+		b = a;
+		a = a * (180 / 3, 14);
+		if (abs(sin(a)) < 10 * 10 ^ -5) cout << "sin(" << b << ") = 0" << endl;
+		else cout << "sin(" << b << ") = " << sin(a) << endl;
+		break;
+	case 9:                                                    //Косинус
+		cout << "Кут: ";
+		cin >> a;
+		b = a;
+		a = a * (180 / 3, 14);
+		if (abs(cos(a)) < 10 * 10 ^ -5) cout << "cos(" << b << ") = 0" << endl;
+		else cout << "sin(" << b << ") = " << cos(a) << endl;
+		break;
+	}
+	a = 0;
+	b = 0;
+	goto start;
+	return 0;
+	
+}
