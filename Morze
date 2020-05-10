@@ -1,0 +1,101 @@
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+void convert(char[50]);                 //Указатель на функцию
+int main() 
+{
+	setlocale(LC_ALL, "ru");
+	cout << "Введите слово на англиском для перевода в азбуку Морзе (предложение будет распознано некоректно):  " << endl;
+	char eng[50];
+	cin >> eng;
+	convert(eng);
+	return 0;
+}
+void convert(char en[]) {     //Функция для перевода англ. слов в Морзе
+	int eng2;      //Переменная для хранения масива
+	eng2 = strlen(en);
+	cout << "Количество символов: ";
+	cout << eng2 << endl;
+	for (int i = 0; i < eng2; i++) {
+		if (en[i] == ' ')
+			cout << endl;
+		else if (en[i] == '0')
+			cout << "-----" << endl;
+		else if (en[i] == '1')
+			cout << ".----" << endl;
+		else if (en[i] == '2')
+			cout << "..---" << endl;
+		else if (en[i] == '3')
+			cout << "...--" << endl;
+		else if (en[i] == '4')
+			cout << "....-" << endl;
+		else if (en[i] == '5')
+			cout << "....." << endl;
+		else if (en[i] == '6')
+			cout << "-...." << endl;
+		else if (en[i] == '7')
+			cout << "--..." << endl;
+		else if (en[i] == '8')
+			cout << "---.." << endl;
+		else if (en[i] == '9')
+			cout << "----." << endl;
+		else if (en[i] == 'A' || en[i] == 'a')
+			cout << ".-" << endl;
+		else if (en[i] == 'B' || en[i] == 'b')
+			cout << "-..." << endl;
+		else if (en[i] == 'C' || en[i] == 'c')
+			cout << "-.-." << endl;
+		else if (en[i] == 'D' || en[i] == 'd')
+			cout << "-.." << endl;
+		else if (en[i] == 'E' || en[i] == 'e')
+			cout << "." << endl;
+		else if (en[i] == 'F' || en[i] == 'f')
+			cout << "..-." << endl;
+		else if (en[i] == 'G' || en[i] == 'g')
+			cout << "--." << endl;
+		else if (en[i] == 'H' || en[i] == 'h')
+			cout << "...." << endl;
+		else if (en[i] == 'I' || en[i] == 'i')
+			cout << ".." << endl;
+		else if (en[i] == 'J' || en[i] == 'j')
+			cout << ".---" << endl;
+		else if (en[i] == 'K' || en[i] == 'k')
+			cout << "-.-" << endl;
+		else if (en[i] == 'L' || en[i] == 'l')
+			cout << ".-.." << endl;
+		else if (en[i] == 'M' || en[i] == 'm')
+			cout << "--" << endl;
+		else if (en[i] == 'N' || en[i] == 'n')
+			cout << "-." << endl;
+		else if (en[i] == 'O' || en[i] == 'o')
+			cout << "---" << endl;
+		else if (en[i] == 'P' || en[i] == 'p')
+			cout << ".--." << endl;
+		else if (en[i] == 'Q' || en[i] == 'q')
+			cout << "--.-" << endl;
+		else if (en[i] == 'R' || en[i] == 'r')
+			cout << ".-." << endl;
+		else if (en[i] == 'S' || en[i] == 's')
+			cout << "..." << endl;
+		else if (en[i] == 'T' || en[i] == 't')
+			cout << "-" << endl;
+		else if (en[i] == 'U' || en[i] == 'u')
+			cout << "..-" << endl;
+		else if (en[i] == 'V' || en[i] == 'v')
+			cout << "...-" << endl;
+		else if (en[i] == 'W' || en[i] == 'w')
+			cout << ".--" << endl;
+		else if (en[i] == 'X' || en[i] == 'x')
+			cout << "-..-" << endl;
+		else if (en[i] == 'Y' || en[i] == 'y')
+			cout << "-.--" << endl;
+		else if (en[i] == 'Z' || en[i] == 'z')
+			cout << "--.." << endl;
+		else
+		{
+		}
+	}
+	cout << endl;
+}
