@@ -1,0 +1,69 @@
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+
+using namespace std;
+
+int machineBank = 0, manBank = 0;
+
+int read(int a, int b)
+{
+	int choice;
+	do {
+		cin >> choice;
+		if (choice < a || choice > b)
+			cout << "Повторите свой выбор\n";
+	} while (choice < a || choice > b);
+	return choice;
+}
+
+int mRand(int a, int b)
+{
+	int rez = rand() % (b - a + 1) + a;
+	return rez;
+}
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	setlocale(LC_ALL, "Russian_Russia.1251");
+	int choiceToShot, shot1, shot2;
+	int shotCount = 1;
+	cout << "Выберите право первого броска\n"
+		"1 - Компьютер\n"
+		"2 - Человек\n";
+	choiceToShot = read(1, 2);
+	do {
+		shot1 = mRand(1, 6);
+		cout << "Нажмите\n"
+			"1 - для броска\n";
+		read(1, 1);
+		shotCount++;
+		shot2 = mRand(1, 6);
+		switch (choiceToShot) {
+		case 1:
+			machineBank += shot1;
+			manBank += shot2;
+			cout << "Компьютер - " << shot1 << endl;
+			cout << "Человек - " << shot2 << endl;
+			break;
+
+		case 2:
+			manBank += shot1;
+			machineBank += shot2;
+			cout << "Человек - " << shot1 << endl;
+			cout << "Компьютер - " << shot2 << endl;
+			break;
+		}
+	} while (shotCount < 6);
+	if (machineBank > manBank)
+		cout << "\nВыиграл Компьютер!\n";
+	else  if (machineBank < manBank)
+		cout << "\nВыиграл Человек!\n";
+	else
+		cout << "\nНичья\n";
+	cout << "\nСумма очков Человека - " << manBank;
+	cout << "\nСумма очков Компьютера - " << machineBank;
+
+	cout << "\n\nИгра окончена!!!!\n";
+}
