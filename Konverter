@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "ukr");
+	int minutes, hours, second, time;         //Делаю 4 переменных
+	
+	cout << "Введiть точний час : \n";
+	cout << "Годин: ";
+	cin >> hours;
+	cout << "Хвилин: ";
+	cin >> minutes;
+	cout << "Секунд: ";
+	cin >> second;
+
+	while (true)                         //Проверка на правильность ввода
+	{
+		if (hours > 24 || hours < 0)        
+		{
+			cout << "Ошибка, введiть ще раз кiлькiсть годин: \n";
+			cin.clear();
+			cin >> hours;
+			
+		}
+		else if (minutes >= 60 || minutes < 0) {
+			cout << "Ошибка, введiть ще раз кiлькiсть хвилин: \n";
+			cin.clear();
+			cin >> minutes;
+			
+		}
+		else if (second >= 60 || second < 0)
+		{
+			cout << "Ошибка, введiть ще раз кiлькiсть секунд: \n";
+			cin.clear();
+			cin >> second;
+		}
+		else break;
+	}
+	time = hours * 3600 + minutes * 60 + second;       //Подсчёт количества секунд
+	cout << "З початку дня пройшло " << time << " секунд.";
+}
